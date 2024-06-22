@@ -1,0 +1,14 @@
+Foobar2000 Install Guide
+
+- download Foobar2000 preview (https://www.foobar2000.org/download)
+- install program
+- download ASIO Output component plugin (https://www.foobar2000.org/components/view/foo_out_asio)
+ + ASIO is higher quality than WASAPI
+- install ASIO Output component plugin
+- open Foobar2000
+ + File > Preference > Playback - ReplayGain
+  + Source mode: none
+  + Processing: none
+ + File > Preference > Playback > Output - Device
+  + ASIO : FOO
+  + Buffer length: 50 ms (lower buffer is superior sound quality and better latency)
