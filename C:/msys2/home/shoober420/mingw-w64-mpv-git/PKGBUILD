@@ -5,7 +5,7 @@
 _realname=mpv
 pkgbase="mingw-w64-${_realname}"
 pkgname="${MINGW_PACKAGE_PREFIX}-${_realname}-git"
-pkgver=0.37.0_114_g17be6e1990
+pkgver=0.38.0_514_g4ec060f946
 pkgrel=1
 pkgdesc="Video player based on MPlayer/mplayer2 (mingw-w64)"
 url="https://mpv.io/"
