@@ -4,7 +4,7 @@
 
 _realname=mpv
 pkgbase="mingw-w64-${_realname}"
-pkgname="${MINGW_PACKAGE_PREFIX}-${_realname}"
+pkgname="${MINGW_PACKAGE_PREFIX}-${_realname}-git"
 pkgver=0.37.0_114_g17be6e1990
 pkgrel=1
 pkgdesc="Video player based on MPlayer/mplayer2 (mingw-w64)"
@@ -46,6 +46,8 @@ makedepends=("${MINGW_PACKAGE_PREFIX}-cc"
              "${MINGW_PACKAGE_PREFIX}-python-rst2pdf"
              "${MINGW_PACKAGE_PREFIX}-vulkan-headers")
 optdepends=("${MINGW_PACKAGE_PREFIX}-yt-dlp: for video-sharing websites playback")
+provides=('${MINGW_PACKAGE_PREFIX}-${_realname}')
+conflicts=('${MINGW_PACKAGE_PREFIX}-${_realname}')
 source=('git+https://github.com/mpv-player/mpv')
 sha256sums=('SKIP')
 
