@@ -5,29 +5,37 @@
 # with this software. 
 # If not, see <https://creativecommons.org/publicdomain/zero/1.0/>. 
 
-# ~/.profile: executed by the command interpreter for login shells.
+# ~/.bash_profile: executed by bash(1) for login shells.
 
-# The copy in your home directory (~/.profile) is yours, please
+# The copy in your home directory (~/.bash_profile) is yours, please
 # feel free to customise it to create a shell
 # environment to your liking.  If you feel a change
-# would be benificial to all, please feel free to send
+# would be benifitial to all, please feel free to send
 # a patch to the msys2 mailing list.
 
-# User dependent .profile file
+# User dependent .bash_profile file
 
-# Set user-defined locale
-export LANG=$(locale -uU)
-
-# This file is not read by bash(1) if ~/.bash_profile or ~/.bash_login
-# exists.
-#
-# if running bash
-if [ -n "${BASH_VERSION}" ]; then
-  if [ -f "${HOME}/.bashrc" ]; then
-    source "${HOME}/.bashrc"
-  fi
+# source the users bashrc if it exists
+if [ -f "${HOME}/.bashrc" ] ; then
+  source "${HOME}/.bashrc"
 fi
 
+# Set PATH so it includes user's private bin if it exists
+# if [ -d "${HOME}/bin" ] ; then
+#   PATH="${HOME}/bin:${PATH}"
+# fi
+
+# Set MANPATH so it includes users' private man if it exists
+# if [ -d "${HOME}/man" ]; then
+#   MANPATH="${HOME}/man:${MANPATH}"
+# fi
+
+# Set INFOPATH so it includes users' private info if it exists
+# if [ -d "${HOME}/info" ]; then
+#   INFOPATH="${HOME}/info:${INFOPATH}"
+# fi
+
 # Set build flags
+echo "Build flags optimized"
 export CFLAGS="-march=native -msahf -O3 -pipe -fno-plt -fno-common -fipa-pta -falign-functions=32 -fdevirtualize-at-ltrans -fuse-linker-plugin -floop-nest-optimize -fgraphite-identity -fexcess-precision=fast -flto=auto"
 export CXXFLAGS="-march=native -msahf -O3 -pipe -fno-plt -fno-common -fipa-pta -falign-functions=32 -fdevirtualize-at-ltrans -fuse-linker-plugin -floop-nest-optimize -fgraphite-identity -fexcess-precision=fast -flto=auto"
