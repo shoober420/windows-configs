@@ -70,7 +70,6 @@ build() {
       --buildtype=plain \
       -Dlibmpv=true \
       -Djavascript=enabled \
-      -Ddefault_library=static \
       ../${_realname}
 
   meson compile
