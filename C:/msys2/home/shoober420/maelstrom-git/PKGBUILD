@@ -1,0 +1,51 @@
+# Maintainer:  Vincent Grande <shoober420@gmail.com>
+# Contributor: Aaron Fischer <mail@aaron-fischer.net>
+# Contributor: Felix Golatofski <contact@xdfr.de>
+# Contributor: Alexander F Rødseth <xyproto@archlinux.org>
+# Contributor: Marcin Skory <armitage at q84fh dot net>
+# Contributor: dale <dale@archlinux.org>
+# Contributor: Tom Newsom <Jeepster@gmx.co.uk>
+
+pkgname=maelstrom-git
+pkgver=3.0.7
+pkgrel=1
+pkgdesc='Asteroids-type game with sound and 3D objects'
+arch=('x86_64' 'i686')
+license=('GPL')
+url="http://www.libsdl.org/projects/Maelstrom/"
+depends=('sdl2_net' 'gcc-libs' 'sdl2')
+backup=('var/games/Maelstrom.scores')
+provides=('maelstrom')
+conflicts=('maelstrom')
+source=("git+https://github.com/libsdl-org/Maelstrom")
+sha512sums=('SKIP')
+
+pkgver() {
+  cd "${srcdir}/Maelstrom"
+  git describe --always --tags --dirty | sed -e 's/^v//' -e 's/-/_/g'
+}
+
+prepare() {
+  cd "Maelstrom"
+  sed -i -e 's/games\/\$PACKAGE/share\/\$PACKAGE/g' configure
+}
+
+build() {
+  cd "Maelstrom"
+
+  ./configure --prefix=/usr
+  make
+}
+
+package() {
+  cd "Maelstrom"
+
+  make prefix="${pkgdir}/usr" install
+
+  install -d "${pkgdir}/usr/share/applications"
+  chown root:games "${pkgdir}/usr/bin/Maelstrom"
+  install -dm775 "${pkgdir}/var/games"
+  mv "${pkgdir}/usr/share/Maelstrom/Maelstrom-Scores" "${pkgdir}/var/games/Maelstrom.scores"
+  chown root:games "${pkgdir}/var/games/Maelstrom.scores"
+  chmod 664 "${pkgdir}/var/games/Maelstrom.scores"
+}
