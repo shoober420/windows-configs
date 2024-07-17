@@ -22,7 +22,7 @@ MAME (MSYS2)
   !!! + NO_X11 = 1 (invalid option)
   !!! + USE_WAYLAND = 0 (invalid option)
   + OPTIMIZE = 3
-  + OPT_FLAGS = -march=native -msahf -O3 -pipe -fno-plt -fno-common -fipa-pta -falign-functions=32 -fdevirtualize-at-ltrans -fuse-linker-plugin -floop-nest-optimize -fgraphite-identity -fexcess-precision=fast -flto=auto" (dont use " ", or error with native occurs)
+  + OPT_FLAGS = -march=native -msahf -O3 -pipe -fno-plt -fno-common -fipa-pta -falign-functions=32 -fdevirtualize-at-ltrans -fuse-linker-plugin -floop-nest-optimize -fgraphite-identity -fexcess-precision=fast -flto=auto" (dont use " ", or error with native flag occurs)
   !!! + USE_LIBSDL = 1 (invalid option)
   + TARGETOS = windows
   + CROSS_BUILD = 0
