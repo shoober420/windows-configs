@@ -26,7 +26,7 @@ MAME (MSYS2)
   !!! + USE_LIBSDL = 1 (invalid option)
   + TARGETOS = windows
   + CROSS_BUILD = 0
-  + LTO = 1
+  !!! + LTO = 1 (mame doesnt support lto builds)
   + SSE2 = 1
   + MSBUILD = 1 (required for visual studio)
 
