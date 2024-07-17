@@ -1,4 +1,4 @@
-MAME (WINDOWS)
+MAME (MSYS2)
  - git clone --recursive https://github.com/mamedev/mame.git
  - cd mame
  - open makefile
