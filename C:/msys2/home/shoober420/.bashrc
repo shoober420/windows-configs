@@ -195,5 +195,5 @@ export CFLAGS="-march=native -msahf -O3 -pipe -fno-plt -fno-common -fipa-pta -fa
 export CXXFLAGS="-march=native -msahf -O3 -pipe -fno-plt -fno-common -fipa-pta -falign-functions=32 -fdevirtualize-at-ltrans -fuse-linker-plugin -floop-nest-optimize -fgraphite-identity -fexcess-precision=fast -flto=auto"
 
 # Fix MAME compile
-export MINGW64=/mingw64
-export MINGW32=
+#export MINGW64=/mingw64
+#export MINGW32=
