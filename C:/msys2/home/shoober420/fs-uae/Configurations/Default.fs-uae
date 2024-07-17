@@ -2,6 +2,8 @@
 amiga_model = A4000
 floppy_drive_0 = Disk1.adf
 floppy_drive_1 = Disk2.adf
+floppy_drive_2 = Disk3.adf
+floppy_drive_3 = Disk4.adf
 fullscreen = 1
 fullscreen_mode = fullscreen
 video_sync = full
