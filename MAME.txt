@@ -30,6 +30,7 @@ MAME (MSYS2)
   + SSE2 = 1
   + MSBUILD = 1 (required for visual studio)
 
+ - uncomment out MAME mingw64 export settings in .bashrc file
  - make
 
 - download MAME ROM Set (use internet archives website)
