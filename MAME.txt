@@ -30,5 +30,6 @@ MAME (WINDOWS)
   + SSE2 = 1
   + MSBUILD = 1 (required for visual studio)
 
+ - make
 
 - download MAME ROM Set (use internet archives website)
