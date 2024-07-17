@@ -29,3 +29,6 @@ MAME (WINDOWS)
   + LTO = 1
   + SSE2 = 1
   + MSBUILD = 1 (required for visual studio)
+
+
+- download MAME ROM Set (use internet archives website)
