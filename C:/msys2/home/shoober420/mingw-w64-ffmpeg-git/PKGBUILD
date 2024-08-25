@@ -7,8 +7,8 @@
 _realname=ffmpeg
 pkgbase="mingw-w64-${_realname}"
 pkgname="${MINGW_PACKAGE_PREFIX}-${_realname}-git"
-pkgver=6.1.1
-pkgrel=1
+pkgver=7.0.2
+pkgrel=2
 pkgdesc="Complete solution to record, convert and stream audio and video (mingw-w64)"
 arch=('any')
 mingw_arch=('mingw32' 'mingw64' 'ucrt64' 'clang64' 'clang32' 'clangarm64')
@@ -20,13 +20,15 @@ msys2_references=(
 license=('spdx:GPL-3.0-or-later')
 depends=("${MINGW_PACKAGE_PREFIX}-aom"
          "${MINGW_PACKAGE_PREFIX}-bzip2"
+         "${MINGW_PACKAGE_PREFIX}-dav1d"
+         "${MINGW_PACKAGE_PREFIX}-fontconfig"
+         "${MINGW_PACKAGE_PREFIX}-freetype"
          "${MINGW_PACKAGE_PREFIX}-frei0r-plugins"
          "${MINGW_PACKAGE_PREFIX}-fribidi"
-         "${MINGW_PACKAGE_PREFIX}-fontconfig"
-         "${MINGW_PACKAGE_PREFIX}-dav1d"
          "${MINGW_PACKAGE_PREFIX}-gmp"
          "${MINGW_PACKAGE_PREFIX}-gnutls"
          "${MINGW_PACKAGE_PREFIX}-gsm"
+         "${MINGW_PACKAGE_PREFIX}-harfbuzz"
          "${MINGW_PACKAGE_PREFIX}-lame"
          "${MINGW_PACKAGE_PREFIX}-libass"
          "${MINGW_PACKAGE_PREFIX}-libbluray"
@@ -66,7 +68,7 @@ depends=("${MINGW_PACKAGE_PREFIX}-aom"
          "${MINGW_PACKAGE_PREFIX}-zlib"
          "${MINGW_PACKAGE_PREFIX}-zvbi")
 makedepends=("${MINGW_PACKAGE_PREFIX}-cc"
-             "autotools"
+             "${MINGW_PACKAGE_PREFIX}-autotools"
              "${MINGW_PACKAGE_PREFIX}-pkgconf"
              "${MINGW_PACKAGE_PREFIX}-dlfcn"
              "${MINGW_PACKAGE_PREFIX}-vulkan-headers"
@@ -87,7 +89,7 @@ prepare() {
     cmp "${startdir}/../mingw-w64-pathtools/pathtools.h" "${srcdir}/pathtools.h"
   } || exit 1
 
-  cd "${srcdir}/${_realname}"
+  cd "${srcdir}/${_realname}-${pkgver}"
   cp -fHv "${srcdir}"/pathtools.[ch] libavfilter/
 }
 
@@ -99,7 +101,6 @@ build() {
     --disable-doc
     --enable-dxva2
     --enable-d3d11va
-    --enable-fontconfig
     --enable-frei0r
     --enable-gmp
     --enable-gnutls
@@ -110,10 +111,12 @@ build() {
     --enable-libbluray
     --enable-libcaca
     --enable-libdav1d
+    --enable-libfontconfig
     --enable-libfreetype
     --enable-libfribidi
     --enable-libgme
     --enable-libgsm
+    --enable-libharfbuzz
     --enable-libjxl
     --enable-libmodplug
     --enable-libmp3lame
@@ -149,9 +152,9 @@ build() {
     --enable-zlib
     --enable-librav1e
     --enable-libvpl
-	--enable-nvdec
-	--enable-nvenc
-	--enable-lto
+    --enable-nvdec
+    --enable-nvenc
+    --enable-lto
   )
 
   if [[ "${CARCH}" != "i686" ]]; then
@@ -167,9 +170,6 @@ build() {
     )
   fi
 
-  # https://github.com/msys2/MINGW-packages/pull/20930#issuecomment-2117626198
-  CFLAGS+=" -Wno-error=incompatible-pointer-types"
-
   for _variant in -static -shared; do
     [[ -d "${srcdir}/build-${MSYSTEM}${_variant}" ]] && rm -rf "${srcdir}/build-${MSYSTEM}${_variant}"
     mkdir -p "${srcdir}/build-${MSYSTEM}${_variant}" && cd "${srcdir}/build-${MSYSTEM}${_variant}"
@@ -178,7 +178,7 @@ build() {
     else
       ENABLE_VARIANT=--enable-shared
     fi
-    ../${_realname}/configure \
+    ../${_realname}-${pkgver}/configure \
       --prefix=${MINGW_PREFIX} \
       --target-os=mingw32 \
       --arch=${CARCH%%-*} \
