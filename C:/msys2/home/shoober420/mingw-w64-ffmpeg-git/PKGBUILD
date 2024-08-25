@@ -83,6 +83,11 @@ source=('git+https://git.ffmpeg.org/ffmpeg.git'
 validpgpkeys=('SKIP')
 sha256sums=('SKIP')
 
+pkgver() {
+  cd "${srcdir}/${_realname}"
+  git describe --always --tags --dirty | sed -e 's/^v//' -e 's/-/_/g'
+}
+
 prepare() {
   test ! -d "${startdir}/../mingw-w64-pathtools" || {
     cmp "${startdir}/../mingw-w64-pathtools/pathtools.c" "${srcdir}/pathtools.c" &&
