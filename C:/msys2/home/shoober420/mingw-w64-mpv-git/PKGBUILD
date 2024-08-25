@@ -46,8 +46,8 @@ makedepends=("${MINGW_PACKAGE_PREFIX}-cc"
              "${MINGW_PACKAGE_PREFIX}-python-rst2pdf"
              "${MINGW_PACKAGE_PREFIX}-vulkan-headers")
 optdepends=("${MINGW_PACKAGE_PREFIX}-yt-dlp: for video-sharing websites playback")
-provides=('${MINGW_PACKAGE_PREFIX}-${_realname}')
-conflicts=('${MINGW_PACKAGE_PREFIX}-${_realname}')
+provides=(mingw-w64-x86_64-mpv)
+conflicts=(mingw-w64-x86_64-mpv)
 source=('git+https://github.com/mpv-player/mpv')
 sha256sums=('SKIP')
 
