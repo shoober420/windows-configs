@@ -75,8 +75,8 @@ makedepends=("${MINGW_PACKAGE_PREFIX}-cc"
              $([[ ${MINGW_PACKAGE_PREFIX} == *-clang-aarch64* ]] || echo "${MINGW_PACKAGE_PREFIX}-amf-headers")
              $([[ ${MINGW_PACKAGE_PREFIX} == *-clang-aarch64* ]] || echo "${MINGW_PACKAGE_PREFIX}-ffnvcodec-headers")
              $([[ ${MINGW_PACKAGE_PREFIX} == *-clang-aarch64* ]] || echo "${MINGW_PACKAGE_PREFIX}-nasm"))
-provides=('${MINGW_PACKAGE_PREFIX}-${_realname}')
-conflicts=('${MINGW_PACKAGE_PREFIX}-${_realname}')
+provides=(mingw-w64-x86_64-ffmpeg)
+conflicts=(mingw-w64-x86_64-ffmpeg)
 source=('git+https://git.ffmpeg.org/ffmpeg.git'
         "pathtools.c"
         "pathtools.h")
